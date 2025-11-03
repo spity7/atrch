@@ -76,14 +76,14 @@ const Header = () => {
                   <li>
                     <span className="menu-num">02</span>
                     <Link
-                      href="/about"
-                      className={pathname === "/about/" ? "current" : ""}
+                      href="/story"
+                      className={pathname === "/story/" ? "current" : ""}
                       onClick={handleCloseMenu}
                     >
-                      About
+                      Story
                     </Link>
                   </li>
-                  <li>
+                  {/* <li>
                     <span className="menu-num">03</span>
                     <Link
                       href="/blog"
@@ -91,6 +91,16 @@ const Header = () => {
                       onClick={handleCloseMenu}
                     >
                       Blog
+                    </Link>
+                  </li> */}
+                  <li>
+                    <span className="menu-num">03</span>
+                    <Link
+                      href="/projects"
+                      className={pathname === "/projects/" ? "current" : ""}
+                      onClick={handleCloseMenu}
+                    >
+                      Architecture
                     </Link>
                   </li>
                   <li>
@@ -108,28 +118,29 @@ const Header = () => {
 
               <div className="menu-right-text">
                 <p className="menu-text-title">EMAIL</p>
-                <div className="menu-text">hello@yourwebsite.com</div>
+                <div className="menu-text">atrchstudio@gmail.com</div>
                 <br />
                 <p className="menu-text-title">PHONE</p>
-                <div className="menu-text">+988 345 783 174</div>
+                <div className="menu-text">+961 71 601 751</div>
                 <br />
                 <p className="menu-text-title">LOCATION</p>
                 <div className="menu-text">
-                  2546 Some Street, <br />
-                  US Based Left 5,
-                  <br />
-                  United States, New York
+                  Tyre, Lebanon, <br />
+                  Beirut, Lebanon,
                 </div>
                 <br />
                 <div className="social-holder">
-                  <a className="social-text" href="https://www.twitter.com/">
+                  {/* <a className="social-text" href="https://www.twitter.com/">
                     TWITTER
-                  </a>
-                  <a className="social-text" href="https://www.facebook.com/">
+                  </a> */}
+                  {/* <a className="social-text" href="https://www.facebook.com/">
                     FACEBOOK
-                  </a>
+                  </a> */}
                   <a className="social-text" href="https://www.instagram.com/">
                     INSTAGRAM
+                  </a>
+                  <a className="social-text" href="https://www.instagram.com/">
+                    LINKEDIN
                   </a>
                 </div>
               </div>

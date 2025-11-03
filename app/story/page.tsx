@@ -3,14 +3,15 @@ import aboutImg from "@/assets/images/about.jpg";
 
 // ------------
 
-function About() {
+function Story() {
   return (
     <main className="page-background">
       <div id="content" className="site-content">
         <div className="content-holder center-relative content-1170">
           <h1 className="entry-title page-title center-text">
-            My name is Peter Williams <br />
-            and I’m designer &amp; photographer
+            Architect Ahmad AlAtrch
+            {/* <br /> */}
+            {/* and I’m designer &amp; photographer */}
             <br />
           </h1>
 
@@ -108,4 +109,4 @@ function About() {
   );
 }
 
-export default About;
+export default Story;

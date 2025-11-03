@@ -1,0 +1,28 @@
+# Ignore Docker-related files
+Dockerfile
+.dockerignore
+
+# Node-related
+node_modules
+npm-debug.log
+yarn-error.log
+pnpm-debug.log
+
+# Next.js build output
+.next
+out
+
+# Git and local files
+.git
+.gitignore
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+*.swp
+
+# Miscellaneous
+README.md
+.vscode
+.idea

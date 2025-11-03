@@ -54,10 +54,10 @@ function Home() {
                   whileInView={{ opacity: 1, transform: `translateY(0px)` }}
                   viewport={{ once: true }}
                 >
-                  <Link className="item-link" href="/single-portfolio">
+                  <Link className="item-link" href="/story">
                     <img src={img01.src} alt="" />
                     <div className="portfolio-text-holder">
-                      <p className="portfolio-title">PHOTOGRAPHY</p>
+                      <p className="portfolio-title">STORY</p>
                     </div>
                   </Link>
                 </motion.div>
@@ -68,12 +68,12 @@ function Home() {
                   whileInView={{ opacity: 1, transform: `translateY(0px)` }}
                   viewport={{ once: true }}
                 >
-                  <a className="item-link" onClick={() => handleOpenPopup(1)}>
+                  <Link className="item-link" href="/architecture">
                     <img src={img02.src} alt="" />
                     <div className="portfolio-text-holder">
-                      <p className="portfolio-title">MOCKUP</p>
+                      <p className="portfolio-title">ARCHITECTURE</p>
                     </div>
-                  </a>
+                  </Link>
                 </motion.div>
 
                 <motion.div
@@ -85,7 +85,7 @@ function Home() {
                   <a className="item-link" onClick={() => handleOpenPopup(2)}>
                     <img src={img03.src} alt="" />
                     <div className="portfolio-text-holder">
-                      <p className="portfolio-title">SNEAKERS</p>
+                      <p className="portfolio-title">HANDIZ</p>
                     </div>
                   </a>
                 </motion.div>
@@ -96,12 +96,15 @@ function Home() {
                   whileInView={{ opacity: 1, transform: `translateY(0px)` }}
                   viewport={{ once: true }}
                 >
-                  <a className="item-link" onClick={() => handleOpenPopup(3)}>
+                  <Link
+                    className="item-link"
+                    href={"https://handiz.org/d5render/"}
+                  >
                     <img src={img04.src} alt="" />
                     <div className="portfolio-text-holder">
-                      <p className="portfolio-title">ARCHITECTURE</p>
+                      <p className="portfolio-title">HANDIZ COURSE</p>
                     </div>
-                  </a>
+                  </Link>
                 </motion.div>
 
                 <motion.div
@@ -110,12 +113,12 @@ function Home() {
                   whileInView={{ opacity: 1, transform: `translateY(0px)` }}
                   viewport={{ once: true }}
                 >
-                  <Link className="item-link" href="/single-portfolio">
+                  <a className="item-link" onClick={() => handleOpenPopup(4)}>
                     <img src={img05.src} alt="" />
                     <div className="portfolio-text-holder">
                       <p className="portfolio-title">ART</p>
                     </div>
-                  </Link>
+                  </a>
                 </motion.div>
 
                 <motion.div
