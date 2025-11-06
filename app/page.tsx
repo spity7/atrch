@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 // Plugins
 import { motion } from "framer-motion";
@@ -23,7 +23,19 @@ import closeIcon from "@/assets/images/close.png";
 // ------------
 
 function Home() {
+  const [stories, setStories] = useState<any[]>([]);
   const [openPortfolio, setOpenPortfolio] = useState<number>(0);
+
+  useEffect(() => {
+    async function fetchStories() {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/stories`, {
+        cache: "no-store",
+      });
+      const data = await res.json();
+      setStories(data.stories ? [data.stories[0]] : []);
+    }
+    fetchStories();
+  }, []);
 
   /**
    * Open a popup of the item with the given number passed to the function
@@ -48,19 +60,46 @@ function Home() {
           <div className="content-holder center-relative content-1170">
             <div id="portfolio-wrapper">
               <div className="our-grid">
-                <motion.div
-                  className="our-grid-item d-1x2 animate"
-                  initial={{ opacity: 0, transform: `translateY(50px)` }}
-                  whileInView={{ opacity: 1, transform: `translateY(0px)` }}
-                  viewport={{ once: true }}
-                >
-                  <Link className="item-link" href="/story">
-                    <img src={img01.src} alt="" />
-                    <div className="portfolio-text-holder">
-                      <p className="portfolio-title">STORY</p>
-                    </div>
-                  </Link>
-                </motion.div>
+                {stories.length > 0 ? (
+                  stories.map((story, index) => (
+                    <motion.div
+                      key={story._id}
+                      className="our-grid-item d-1x2 animate"
+                      initial={{ opacity: 0, transform: `translateY(50px)` }}
+                      whileInView={{
+                        opacity: 1,
+                        transform: `translateY(0px)`,
+                      }}
+                      viewport={{ once: true }}
+                    >
+                      {/* You can link to a story detail page if needed */}
+                      <Link className="item-link" href="/story">
+                        <img
+                          src={story.thumbnailUrl || img02.src}
+                          alt={story.title}
+                          style={{ objectFit: "cover" }}
+                        />
+                        <div className="portfolio-text-holder">
+                          <p className="portfolio-title">{story.title}</p>
+                        </div>
+                      </Link>
+                    </motion.div>
+                  ))
+                ) : (
+                  <motion.div
+                    className="our-grid-item d-1x2 animate"
+                    initial={{ opacity: 0, transform: `translateY(50px)` }}
+                    whileInView={{ opacity: 1, transform: `translateY(0px)` }}
+                    viewport={{ once: true }}
+                  >
+                    <Link className="item-link" href="/story">
+                      <img src={img01.src} alt="" />
+                      <div className="portfolio-text-holder">
+                        <p className="portfolio-title">STORY</p>
+                      </div>
+                    </Link>
+                  </motion.div>
+                )}
 
                 <motion.div
                   className="our-grid-item d-1x1 animate"
