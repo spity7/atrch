@@ -24,6 +24,7 @@ import closeIcon from "@/assets/images/close.png";
 
 function Home() {
   const [stories, setStories] = useState<any[]>([]);
+  const [handiz, setHandiz] = useState<any[]>([]);
   const [openPortfolio, setOpenPortfolio] = useState<number>(0);
 
   useEffect(() => {
@@ -35,6 +36,20 @@ function Home() {
       setStories(data.stories ? [data.stories[0]] : []);
     }
     fetchStories();
+  }, []);
+
+  useEffect(() => {
+    async function fetchHandiz() {
+      const handiz_res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/handiz`,
+        {
+          cache: "no-store",
+        }
+      );
+      const handiz_data = await handiz_res.json();
+      setHandiz(handiz_data.handiz ? [handiz_data.handiz[0]] : []);
+    }
+    fetchHandiz();
   }, []);
 
   /**
@@ -115,19 +130,60 @@ function Home() {
                   </Link>
                 </motion.div>
 
-                <motion.div
+                {handiz.length > 0 ? (
+                  handiz.map((handiz, index) => (
+                    <motion.div
+                      key={handiz._id}
+                      className="our-grid-item d-1x1 animate"
+                      initial={{ opacity: 0, transform: `translateY(50px)` }}
+                      whileInView={{
+                        opacity: 1,
+                        transform: `translateY(0px)`,
+                      }}
+                      viewport={{ once: true }}
+                    >
+                      {/* You can link to a handiz detail page if needed */}
+                      <Link className="item-link" href="/handiz">
+                        <img
+                          src={handiz.thumbnailUrl || img02.src}
+                          alt={handiz.title}
+                          style={{ objectFit: "cover" }}
+                        />
+                        <div className="portfolio-text-holder">
+                          <p className="portfolio-title">{handiz.title}</p>
+                        </div>
+                      </Link>
+                    </motion.div>
+                  ))
+                ) : (
+                  <motion.div
+                    className="our-grid-item d-1x1 animate"
+                    initial={{ opacity: 0, transform: `translateY(50px)` }}
+                    whileInView={{ opacity: 1, transform: `translateY(0px)` }}
+                    viewport={{ once: true }}
+                  >
+                    <Link className="item-link" href="/handiz">
+                      <img src={img01.src} alt="" />
+                      <div className="portfolio-text-holder">
+                        <p className="portfolio-title">HANDIZ</p>
+                      </div>
+                    </Link>
+                  </motion.div>
+                )}
+
+                {/* <motion.div
                   className="our-grid-item d-1x1 animate"
                   initial={{ opacity: 0, transform: `translateY(50px)` }}
                   whileInView={{ opacity: 1, transform: `translateY(0px)` }}
                   viewport={{ once: true }}
                 >
-                  <a className="item-link" onClick={() => handleOpenPopup(2)}>
+                  <Link className="item-link" href="/handiz">
                     <img src={img03.src} alt="" />
                     <div className="portfolio-text-holder">
                       <p className="portfolio-title">HANDIZ</p>
                     </div>
-                  </a>
-                </motion.div>
+                  </Link>
+                </motion.div> */}
 
                 <motion.div
                   className="our-grid-item d-2x1 animate"
