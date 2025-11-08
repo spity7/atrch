@@ -24,7 +24,7 @@ import { MenuProvider } from "@/context/MenuContext";
 
 // Metadata of the website (used to inprove SEO of the website)
 export const metadata: Metadata = {
-  title: "Pekko - Minimal Black Nextjs Template",
+  title: "Atrch",
   description: "Template by CocoBasic",
   keywords: ["HTML", "CSS", "Javascript", "Typescript", "React", "nextjs"],
   authors: [
