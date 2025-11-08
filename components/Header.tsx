@@ -93,7 +93,7 @@ const Header = () => {
                       Blog
                     </Link>
                   </li> */}
-                  <li>
+                  {/* <li>
                     <span className="menu-num">03</span>
                     <Link
                       href="/projects"
@@ -112,16 +112,20 @@ const Header = () => {
                     >
                       Contact
                     </Link>
-                  </li>
+                  </li> */}
                 </ul>
               </nav>
 
               <div className="menu-right-text">
                 <p className="menu-text-title">EMAIL</p>
-                <div className="menu-text">atrchstudio@gmail.com</div>
+                <a className="menu-text" href="mailto:atrchstudio@gmail.com">
+                  atrchstudio@gmail.com
+                </a>
                 <br />
                 <p className="menu-text-title">PHONE</p>
-                <div className="menu-text">+961 71 601 751</div>
+                <a className="menu-text" href="tel:+96171601751">
+                  +961 71 601 751
+                </a>
                 <br />
                 <p className="menu-text-title">LOCATION</p>
                 <div className="menu-text">
@@ -136,10 +140,18 @@ const Header = () => {
                   {/* <a className="social-text" href="https://www.facebook.com/">
                     FACEBOOK
                   </a> */}
-                  <a className="social-text" href="https://www.instagram.com/">
+                  <a
+                    className="social-text"
+                    href="https://www.instagram.com/ahmadalatrch/"
+                    target="_blank"
+                  >
                     INSTAGRAM
                   </a>
-                  <a className="social-text" href="https://www.instagram.com/">
+                  <a
+                    className="social-text"
+                    href="https://www.linkedin.com/in/ahmad-alatrash-52b271104/"
+                    target="_blank"
+                  >
                     LINKEDIN
                   </a>
                 </div>

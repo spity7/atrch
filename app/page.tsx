@@ -24,29 +24,35 @@ function Home() {
   const [openPortfolio, setOpenPortfolio] = useState<any>(null);
   const [visibleCount, setVisibleCount] = useState(12);
   const pageSize = 12;
+  const [loadingStories, setLoadingStories] = useState(true);
+  const [loadingHandiz, setLoadingHandiz] = useState(true);
 
-  useEffect(
-    () => () => {
-      async function fetchStories() {
+  useEffect(() => {
+    async function fetchStories() {
+      try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/stories`, {
           cache: "no-store",
         });
         const data = await res.json();
         setStories(data.stories ? [data.stories[0]] : []);
+      } finally {
+        setLoadingStories(false);
       }
-      fetchStories();
-    },
-    []
-  );
+    }
+    fetchStories();
+  }, []);
 
   useEffect(() => {
     async function fetchHandiz() {
-      const handiz_res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/handiz`,
-        { cache: "no-store" }
-      );
-      const handiz_data = await handiz_res.json();
-      setHandiz(handiz_data.handiz ? [handiz_data.handiz[0]] : []);
+      try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/handiz`, {
+          cache: "no-store",
+        });
+        const data = await res.json();
+        setHandiz(data.handiz ? [data.handiz[0]] : []);
+      } finally {
+        setLoadingHandiz(false);
+      }
     }
     fetchHandiz();
   }, []);
@@ -79,7 +85,11 @@ function Home() {
             <div id="portfolio-wrapper">
               <div className="our-grid">
                 {/* STORIES */}
-                {stories.length > 0 ? (
+                {loadingStories ? (
+                  <div className="our-grid-item d-1x1 animate">
+                    <div className="item-link skeleton-box" />
+                  </div>
+                ) : stories.length > 0 ? (
                   stories.map((story) => (
                     <motion.div
                       key={story._id}
@@ -90,7 +100,7 @@ function Home() {
                     >
                       <Link className="item-link" href="/story">
                         <img
-                          src={''}
+                          src={story.thumbnailUrl || img02.src}
                           alt={story.title}
                           style={{ objectFit: "cover" }}
                         />
@@ -112,7 +122,11 @@ function Home() {
                 )}
 
                 {/* HANDIZ */}
-                {handiz.length > 0 ? (
+                {loadingHandiz ? (
+                  <div className="our-grid-item d-1x1 animate">
+                    <div className="item-link skeleton-box" />
+                  </div>
+                ) : handiz.length > 0 ? (
                   handiz.map((h) => (
                     <motion.div
                       key={h._id}
