@@ -1,11 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
-
-// Plugins
 import { motion } from "framer-motion";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
-
 import Link from "next/link";
 
 // Images
@@ -20,31 +17,33 @@ import img07 from "@/assets/images/home/home_07.jpg";
 import img08 from "@/assets/images/home/home_08.jpg";
 import closeIcon from "@/assets/images/close.png";
 
-// ------------
-
 function Home() {
   const [stories, setStories] = useState<any[]>([]);
   const [handiz, setHandiz] = useState<any[]>([]);
-  const [openPortfolio, setOpenPortfolio] = useState<number>(0);
+  const [projects, setProjects] = useState<any[]>([]);
+  const [openPortfolio, setOpenPortfolio] = useState<any>(null);
+  const [visibleCount, setVisibleCount] = useState(12);
+  const pageSize = 12;
 
-  useEffect(() => {
-    async function fetchStories() {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/stories`, {
-        cache: "no-store",
-      });
-      const data = await res.json();
-      setStories(data.stories ? [data.stories[0]] : []);
-    }
-    fetchStories();
-  }, []);
+  useEffect(
+    () => () => {
+      async function fetchStories() {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/stories`, {
+          cache: "no-store",
+        });
+        const data = await res.json();
+        setStories(data.stories ? [data.stories[0]] : []);
+      }
+      fetchStories();
+    },
+    []
+  );
 
   useEffect(() => {
     async function fetchHandiz() {
       const handiz_res = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/handiz`,
-        {
-          cache: "no-store",
-        }
+        { cache: "no-store" }
       );
       const handiz_data = await handiz_res.json();
       setHandiz(handiz_data.handiz ? [handiz_data.handiz[0]] : []);
@@ -52,20 +51,24 @@ function Home() {
     fetchHandiz();
   }, []);
 
-  /**
-   * Open a popup of the item with the given number passed to the function
-   *
-   * @param num Pop up item number to be open
-   */
-  const handleOpenPopup = (num: number) => {
-    setOpenPortfolio(num);
+  useEffect(() => {
+    async function fetchProjects() {
+      const projects_res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/projects`,
+        { cache: "no-store" }
+      );
+      const projects_data = await projects_res.json();
+      setProjects(projects_data.projects || []);
+    }
+    fetchProjects();
+  }, []);
+
+  const handleOpenPopup = (item: any) => {
+    setOpenPortfolio(item);
   };
 
-  /**
-   * Closed the opened items by reseting the {openPortfolio} variable to 0
-   */
   const handleClosePopup = () => {
-    setOpenPortfolio(0);
+    setOpenPortfolio(null);
   };
 
   return (
@@ -75,19 +78,16 @@ function Home() {
           <div className="content-holder center-relative content-1170">
             <div id="portfolio-wrapper">
               <div className="our-grid">
+                {/* STORIES */}
                 {stories.length > 0 ? (
-                  stories.map((story, index) => (
+                  stories.map((story) => (
                     <motion.div
                       key={story._id}
-                      className="our-grid-item d-1x2 animate"
+                      className="our-grid-item d-1x1 animate"
                       initial={{ opacity: 0, transform: `translateY(50px)` }}
-                      whileInView={{
-                        opacity: 1,
-                        transform: `translateY(0px)`,
-                      }}
+                      whileInView={{ opacity: 1, transform: `translateY(0px)` }}
                       viewport={{ once: true }}
                     >
-                      {/* You can link to a story detail page if needed */}
                       <Link className="item-link" href="/story">
                         <img
                           src={story.thumbnailUrl || img02.src}
@@ -101,12 +101,7 @@ function Home() {
                     </motion.div>
                   ))
                 ) : (
-                  <motion.div
-                    className="our-grid-item d-1x2 animate"
-                    initial={{ opacity: 0, transform: `translateY(50px)` }}
-                    whileInView={{ opacity: 1, transform: `translateY(0px)` }}
-                    viewport={{ once: true }}
-                  >
+                  <motion.div className="our-grid-item d-1x1 animate">
                     <Link className="item-link" href="/story">
                       <img src={img01.src} alt="" />
                       <div className="portfolio-text-holder">
@@ -116,52 +111,30 @@ function Home() {
                   </motion.div>
                 )}
 
-                <motion.div
-                  className="our-grid-item d-1x1 animate"
-                  initial={{ opacity: 0, transform: `translateY(50px)` }}
-                  whileInView={{ opacity: 1, transform: `translateY(0px)` }}
-                  viewport={{ once: true }}
-                >
-                  <Link className="item-link" href="/architecture">
-                    <img src={img02.src} alt="" />
-                    <div className="portfolio-text-holder">
-                      <p className="portfolio-title">ARCHITECTURE</p>
-                    </div>
-                  </Link>
-                </motion.div>
-
+                {/* HANDIZ */}
                 {handiz.length > 0 ? (
-                  handiz.map((handiz, index) => (
+                  handiz.map((h) => (
                     <motion.div
-                      key={handiz._id}
+                      key={h._id}
                       className="our-grid-item d-1x1 animate"
                       initial={{ opacity: 0, transform: `translateY(50px)` }}
-                      whileInView={{
-                        opacity: 1,
-                        transform: `translateY(0px)`,
-                      }}
+                      whileInView={{ opacity: 1, transform: `translateY(0px)` }}
                       viewport={{ once: true }}
                     >
-                      {/* You can link to a handiz detail page if needed */}
                       <Link className="item-link" href="/handiz">
                         <img
-                          src={handiz.thumbnailUrl || img02.src}
-                          alt={handiz.title}
+                          src={h.thumbnailUrl || img02.src}
+                          alt={h.title}
                           style={{ objectFit: "cover" }}
                         />
                         <div className="portfolio-text-holder">
-                          <p className="portfolio-title">{handiz.title}</p>
+                          <p className="portfolio-title">{h.title}</p>
                         </div>
                       </Link>
                     </motion.div>
                   ))
                 ) : (
-                  <motion.div
-                    className="our-grid-item d-1x1 animate"
-                    initial={{ opacity: 0, transform: `translateY(50px)` }}
-                    whileInView={{ opacity: 1, transform: `translateY(0px)` }}
-                    viewport={{ once: true }}
-                  >
+                  <motion.div className="our-grid-item d-1x1 animate">
                     <Link className="item-link" href="/handiz">
                       <img src={img01.src} alt="" />
                       <div className="portfolio-text-holder">
@@ -171,29 +144,21 @@ function Home() {
                   </motion.div>
                 )}
 
-                {/* <motion.div
-                  className="our-grid-item d-1x1 animate"
-                  initial={{ opacity: 0, transform: `translateY(50px)` }}
-                  whileInView={{ opacity: 1, transform: `translateY(0px)` }}
-                  viewport={{ once: true }}
-                >
-                  <Link className="item-link" href="/handiz">
-                    <img src={img03.src} alt="" />
+                {/* ARCHITECTURE static */}
+                <motion.div className="our-grid-item d-2x1 animate">
+                  <Link className="item-link" href="/architecture">
+                    <img src={img02.src} alt="" />
                     <div className="portfolio-text-holder">
-                      <p className="portfolio-title">HANDIZ</p>
+                      <p className="portfolio-title">ARCHITECTURE</p>
                     </div>
                   </Link>
-                </motion.div> */}
+                </motion.div>
 
-                <motion.div
-                  className="our-grid-item d-2x1 animate"
-                  initial={{ opacity: 0, transform: `translateY(50px)` }}
-                  whileInView={{ opacity: 1, transform: `translateY(0px)` }}
-                  viewport={{ once: true }}
-                >
+                {/* HANDIZ COURSE static */}
+                <motion.div className="our-grid-item d-2x1 animate">
                   <Link
                     className="item-link"
-                    href={"https://handiz.org/d5render/"}
+                    href="https://handiz.org/d5render/"
                   >
                     <img src={img04.src} alt="" />
                     <div className="portfolio-text-holder">
@@ -202,69 +167,81 @@ function Home() {
                   </Link>
                 </motion.div>
 
-                <motion.div
-                  className="our-grid-item d-1x1 animate"
-                  initial={{ opacity: 0, transform: `translateY(50px)` }}
-                  whileInView={{ opacity: 1, transform: `translateY(0px)` }}
-                  viewport={{ once: true }}
-                >
-                  <a className="item-link" onClick={() => handleOpenPopup(4)}>
-                    <img src={img05.src} alt="" />
-                    <div className="portfolio-text-holder">
-                      <p className="portfolio-title">ART</p>
-                    </div>
-                  </a>
-                </motion.div>
+                {/* PROJECTS replacing: ART, OFFICE, MODEL, MOCKUP */}
+                {/* PROJECTS with pagination */}
+                {projects.length > 0 &&
+                  projects.slice(0, visibleCount).map((proj) => (
+                    <motion.div
+                      key={proj._id}
+                      className="our-grid-item d-1x1 animate"
+                      initial={{ opacity: 0, transform: `translateY(50px)` }}
+                      whileInView={{ opacity: 1, transform: `translateY(0px)` }}
+                      viewport={{ once: true }}
+                    >
+                      <a
+                        className="item-link"
+                        onClick={() => handleOpenPopup(proj)}
+                      >
+                        <img
+                          src={proj.imageUrl}
+                          alt="project image"
+                          style={{ objectFit: "cover" }}
+                        />
+                        <div className="portfolio-text-holder">
+                          <p className="portfolio-title">PROJECT</p>
+                        </div>
+                      </a>
+                    </motion.div>
+                  ))}
 
-                <motion.div
-                  className="our-grid-item d-1x2 animate"
-                  initial={{ opacity: 0, transform: `translateY(50px)` }}
-                  whileInView={{ opacity: 1, transform: `translateY(0px)` }}
-                  viewport={{ once: true }}
-                >
-                  <a className="item-link" onClick={() => handleOpenPopup(4)}>
-                    <img src={img06.src} alt="" />
-                    <div className="portfolio-text-holder">
-                      <p className="portfolio-title">OFFICE</p>
-                    </div>
-                  </a>
-                </motion.div>
-
-                <motion.div
-                  className="our-grid-item d-1x2 animate"
-                  initial={{ opacity: 0, transform: `translateY(50px)` }}
-                  whileInView={{ opacity: 1, transform: `translateY(0px)` }}
-                  viewport={{ once: true }}
-                >
-                  <Link className="item-link" href="/single-portfolio">
-                    <img src={img07.src} alt="" />
-                    <div className="portfolio-text-holder">
-                      <p className="portfolio-title">MODEL</p>
-                    </div>
-                  </Link>
-                </motion.div>
-
-                <motion.div
-                  className="our-grid-item d-1x1 animate"
-                  initial={{ opacity: 0, transform: `translateY(50px)` }}
-                  whileInView={{ opacity: 1, transform: `translateY(0px)` }}
-                  viewport={{ once: true }}
-                >
-                  <Link className="item-link" href="/single-portfolio">
-                    <img src={img08.src} alt="" />
-                    <div className="portfolio-text-holder">
-                      <p className="portfolio-title">MOCKUP</p>
-                    </div>
-                  </Link>
-                </motion.div>
+                {/* LOAD MORE BUTTON */}
+                {visibleCount < projects.length && (
+                  <div
+                    style={{
+                      width: "100%",
+                      textAlign: "center",
+                      marginTop: "30px",
+                    }}
+                  >
+                    <button
+                      style={{
+                        padding: "10px 24px",
+                        backgroundColor: "#111827",
+                        color: "#ffffff",
+                        borderRadius: "9999px",
+                        fontSize: "14px",
+                        letterSpacing: "0.4px",
+                        border: "none",
+                        cursor: "pointer",
+                        boxShadow: "0 6px 18px rgba(16,24,40,0.18)",
+                        transition:
+                          "transform .15s ease, box-shadow .15s ease, background-color .15s ease",
+                      }}
+                      onMouseEnter={(e) => {
+                        const t = e.currentTarget as HTMLButtonElement;
+                        t.style.transform = "translateY(-3px)";
+                        t.style.boxShadow = "0 10px 30px rgba(16,24,40,0.25)";
+                      }}
+                      onMouseLeave={(e) => {
+                        const t = e.currentTarget as HTMLButtonElement;
+                        t.style.transform = "translateY(0)";
+                        t.style.boxShadow = "0 6px 18px rgba(16,24,40,0.18)";
+                      }}
+                      onClick={() => setVisibleCount((c) => c + pageSize)}
+                    >
+                      Load More
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
           </div>
         </div>
       </main>
-      {/* Popups */}
+
+      {/* POPUP FOR PROJECT IMAGES */}
       <Popup
-        open={openPortfolio !== 0}
+        open={!!openPortfolio}
         closeOnDocumentClick
         onClose={handleClosePopup}
         modal
@@ -277,32 +254,15 @@ function Home() {
           >
             <img src={closeIcon.src} alt="close icon" />
           </div>
-          {openPortfolio === 1 ? (
+
+          {openPortfolio && (
             <div className="popup-image-box">
-              <img src={img02B.src} alt="portfolio image" />
+              <img
+                src={openPortfolio.imageUrl}
+                alt="project image"
+                style={{ width: "100%" }}
+              />
             </div>
-          ) : openPortfolio === 2 ? (
-            <p className="video-framer poped-up-item" onClick={close}>
-              <iframe
-                src="https://player.vimeo.com/video/199192931"
-                width="100%"
-                allow="autoplay; fullscreen"
-              ></iframe>
-            </p>
-          ) : openPortfolio === 3 ? (
-            <div className="popup-image-box">
-              <img src={img04.src} alt="portfolio image" />
-            </div>
-          ) : openPortfolio === 4 ? (
-            <p className="video-framer poped-up-item" onClick={close}>
-              <iframe
-                src="https://player.vimeo.com/video/199192931"
-                width="100%"
-                allow="autoplay; fullscreen"
-              ></iframe>
-            </p>
-          ) : (
-            <></>
           )}
         </div>
       </Popup>

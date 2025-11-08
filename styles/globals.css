@@ -66,7 +66,7 @@ body.open.done {
 
 .site-wrapper img {
   max-width: 100%;
-  max-height: 100%;
+  max-height: 450px;
   width: auto;
   height: auto;
   display: block;
