@@ -20,6 +20,45 @@ const Header = () => {
   const toggleNav = () => setMenuOpen((prev: boolean) => !prev);
   const handleCloseMenu = () => setMenuOpen(false);
 
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+
+    const nameInput = form.elements.namedItem("name") as HTMLInputElement;
+    const phoneInput = form.elements.namedItem("phone") as HTMLInputElement;
+    const emailInput = form.elements.namedItem("email") as HTMLInputElement;
+    const messageInput = form.elements.namedItem(
+      "message"
+    ) as HTMLTextAreaElement;
+
+    const formData = {
+      name: nameInput.value,
+      phone: phoneInput.value,
+      email: emailInput.value,
+      message: messageInput.value,
+    };
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await res.json();
+
+      if (res.ok) {
+        alert("Message sent successfully!");
+        form.reset();
+      } else {
+        alert(result.error || "Failed to send message");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Failed to send message");
+    }
+  };
+
   return (
     <>
       {/* Header */}
@@ -128,10 +167,7 @@ const Header = () => {
 
               <div className="menu-right">
                 <div className="menu-right-form">
-                  <form
-                    className="contact-form"
-                    onSubmit={(e) => e.preventDefault()}
-                  >
+                  <form className="contact-form" onSubmit={handleSubmit}>
                     <p className="menu-text-title form-title">Contact Us</p>
 
                     <div className="form-group">
