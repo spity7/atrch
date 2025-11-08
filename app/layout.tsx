@@ -18,6 +18,8 @@ import "@/styles/our-styles.css";
 // Types
 import type { Metadata } from "next";
 
+import { MenuProvider } from "@/context/MenuContext";
+
 // --------------
 
 // Metadata of the website (used to inprove SEO of the website)
@@ -40,12 +42,20 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        />
+      </head>
       <body className="page-background">
-        <div className="site-wrapper">
-          <Header />
-          {children}
-          <Footer />
-        </div>
+        <MenuProvider>
+          <div className="site-wrapper">
+            <Header />
+            {children}
+            <Footer />
+          </div>
+        </MenuProvider>
       </body>
     </html>
   );

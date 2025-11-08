@@ -17,6 +17,8 @@ import img07 from "@/assets/images/home/home_07.jpg";
 import img08 from "@/assets/images/home/home_08.jpg";
 import closeIcon from "@/assets/images/close.png";
 
+import { useMenu } from "@/context/MenuContext";
+
 function Home() {
   const [stories, setStories] = useState<any[]>([]);
   const [handiz, setHandiz] = useState<any[]>([]);
@@ -26,6 +28,8 @@ function Home() {
   const pageSize = 12;
   const [loadingStories, setLoadingStories] = useState(true);
   const [loadingHandiz, setLoadingHandiz] = useState(true);
+
+  const { openMenu } = useMenu();
 
   useEffect(() => {
     async function fetchStories() {
@@ -135,7 +139,7 @@ function Home() {
                       whileInView={{ opacity: 1, transform: `translateY(0px)` }}
                       viewport={{ once: true }}
                     >
-                      <Link className="item-link" href="/handiz">
+                      <Link className="item-link" href="https://handiz.org/">
                         <img
                           src={h.thumbnailUrl || img02.src}
                           alt={h.title}
@@ -149,7 +153,7 @@ function Home() {
                   ))
                 ) : (
                   <motion.div className="our-grid-item d-1x1 animate">
-                    <Link className="item-link" href="/handiz">
+                    <Link className="item-link" href="https://handiz.org/">
                       <img src={img01.src} alt="" />
                       <div className="portfolio-text-holder">
                         <p className="portfolio-title">HANDIZ</p>
@@ -158,14 +162,13 @@ function Home() {
                   </motion.div>
                 )}
 
-                {/* ARCHITECTURE static */}
                 <motion.div className="our-grid-item d-2x1 animate">
-                  <Link className="item-link" href="/architecture">
+                  <a className="item-link" onClick={openMenu}>
                     <img src={img02.src} alt="" />
                     <div className="portfolio-text-holder">
-                      <p className="portfolio-title">ARCHITECTURE</p>
+                      <p className="portfolio-title">CONTACT US</p>
                     </div>
-                  </Link>
+                  </a>
                 </motion.div>
 
                 {/* HANDIZ COURSE static */}

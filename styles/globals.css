@@ -473,6 +473,25 @@ span.menu-num {
   padding-left: 165px;
   /* opacity: 0; */
   transition: opacity 0.7s ease, margin-top 0.7s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+/* LEFT COLUMN = menu + contact info */
+.menu-left {
+  width: 55%;
+}
+
+/* RIGHT COLUMN = form */
+.menu-right {
+  width: 60%;
+}
+
+/* allow blocks inside left column to stack */
+#header-main-menu,
+.menu-right-text {
+  width: 100% !important;
 }
 
 .menu-text {
@@ -493,8 +512,14 @@ p.menu-text-title {
 }
 
 .menu-right-text {
-  display: inline-block;
+  display: block;
   width: 45%;
+  vertical-align: top;
+}
+
+.menu-right-form {
+  display: inline-block;
+  width: 80%;
   vertical-align: top;
 }
 
@@ -1152,6 +1177,23 @@ footer {
   .menu-wrapper-back {
     padding-top: 100px;
     padding-left: 0;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .menu-left {
+    width: 100%;
+    /* margin-left: 50px; */
+    margin-top: 40px;
+    /* margin-bottom: 40px; */
+  }
+
+
+  .menu-right {
+    width: 100%;
+    /* margin-left: 50px; */
+    /* margin-top: 40px; */
+    margin-bottom: 40px;
   }
 
   body.page-background,
@@ -1180,9 +1222,17 @@ footer {
 
   .menu-right-text {
     display: block;
-    width: 75%;
+    width: 25%;
     margin-left: 50px;
     margin-top: 40px;
+    margin-bottom: 40px;
+  }
+
+  .menu-right-form {
+    display: block;
+    width: 60%;
+    margin-left: 20px;
+    /* margin-top: 40px; */
     margin-bottom: 40px;
   }
 
@@ -1241,4 +1291,142 @@ footer {
     line-height: 130%;
     margin: 20px 0;
   }
+}
+
+.contact-item {
+  display: inline-block;
+  padding: 6px 10px;
+  border: 1px solid #999;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.social-holder {
+  display: flex;
+  gap: 16px;
+  margin-top: 15px;
+}
+
+.social-icon1 {
+  font-size: 28px;
+  color: rgb(255, 111, 111);
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.social-icon1:hover {
+  color: #ff0062;
+}
+
+.social-icon2 {
+  font-size: 22px;
+  color: rgb(0, 115, 255);
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.social-icon2:hover {
+  color: #163d81;
+}
+
+.social-icon3 {
+  font-size: 20px;
+  background: linear-gradient(45deg, #d93025, #fbbc04);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-decoration: none;
+  transition: 0.2s;
+  margin-right: 10px;
+}
+
+.social-icon3:hover {
+  background: linear-gradient(45deg, #b8251b, #e0a803);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.social-icon4 {
+  font-size: 20px;
+  color: #25D366;
+  text-decoration: none;
+  transition: 0.2s;
+  margin-right: 10px;
+}
+
+.social-icon4:hover {
+  color: #1da851;
+}
+
+/* Container */
+.menu-right-form {
+  /* background: rgba(255, 255, 255, 0.05); */
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+/* Title */
+.form-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Inputs */
+.form-group {
+  margin-bottom: 15px;
+}
+
+.input-field,
+.textarea-field {
+  width: 100%;
+  padding: 12px 15px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.3);
+  background: rgba(255,255,255,0.05);
+  color: #fff;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.input-field::placeholder,
+.textarea-field::placeholder {
+  color: rgba(255,255,255,0.6);
+}
+
+.input-field:focus,
+.textarea-field:focus {
+  border-color: #ff6b81;
+  box-shadow: 0 0 10px rgba(255,107,129,0.4);
+  outline: none;
+  background: rgba(255,255,255,0.1);
+}
+
+/* Textarea specific */
+.textarea-field {
+  resize: none;
+}
+
+/* Submit Button */
+.send-btn {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(90deg, #ff6b81, #ff8c42);
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.send-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255,107,129,0.5);
 }
