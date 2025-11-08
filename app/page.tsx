@@ -136,7 +136,7 @@ function Home() {
                 ) : (
                   <motion.div className="our-grid-item d-1x1 animate">
                     <Link className="item-link" href="/handiz">
-                      <img src={''} alt="" />
+                      <img src={img01.src} alt="" />
                       <div className="portfolio-text-holder">
                         <p className="portfolio-title">HANDIZ</p>
                       </div>
