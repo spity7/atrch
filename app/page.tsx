@@ -90,7 +90,7 @@ function Home() {
                     >
                       <Link className="item-link" href="/story">
                         <img
-                          src={story.thumbnailUrl || img02.src}
+                          src={''}
                           alt={story.title}
                           style={{ objectFit: "cover" }}
                         />
@@ -136,7 +136,7 @@ function Home() {
                 ) : (
                   <motion.div className="our-grid-item d-1x1 animate">
                     <Link className="item-link" href="/handiz">
-                      <img src={img01.src} alt="" />
+                      <img src={''} alt="" />
                       <div className="portfolio-text-holder">
                         <p className="portfolio-title">HANDIZ</p>
                       </div>
