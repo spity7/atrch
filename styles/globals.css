@@ -641,7 +641,7 @@ a.social-text {
 
 ul.timeline-holder {
   margin: 0;
-  padding: 0 0 0 40px;
+  padding: 0 0 0 0;
 }
 
 li.timeline-event {

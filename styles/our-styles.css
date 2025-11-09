@@ -22,7 +22,7 @@
   display: block;
   /* margin-bottom: 10px; */
 }
-.our-grid .our-grid-item img {
+.our-grid .our-grid-item img, video {
   display: block;
   width: 100%;
   aspect-ratio: 1 / 1;   /* forces perfect square */

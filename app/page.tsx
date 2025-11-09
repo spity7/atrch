@@ -23,11 +23,15 @@ function Home() {
   const [stories, setStories] = useState<any[]>([]);
   const [handiz, setHandiz] = useState<any[]>([]);
   const [projects, setProjects] = useState<any[]>([]);
+  const [contacts, setContacts] = useState<any[]>([]);
+  const [courses, setCourses] = useState<any[]>([]);
   const [openPortfolio, setOpenPortfolio] = useState<any>(null);
   const [visibleCount, setVisibleCount] = useState(12);
   const pageSize = 12;
   const [loadingStories, setLoadingStories] = useState(true);
   const [loadingHandiz, setLoadingHandiz] = useState(true);
+  const [loadingContacts, setLoadingContacts] = useState(true);
+  const [loadingCourses, setLoadingCourses] = useState(true);
 
   const { openMenu } = useMenu();
 
@@ -73,6 +77,36 @@ function Home() {
     fetchProjects();
   }, []);
 
+  useEffect(() => {
+    async function fetchContacts() {
+      try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/contacts`, {
+          cache: "no-store",
+        });
+        const data = await res.json();
+        setContacts(data.contacts ? [data.contacts[0]] : []);
+      } finally {
+        setLoadingContacts(false);
+      }
+    }
+    fetchContacts();
+  }, []);
+
+  useEffect(() => {
+    async function fetchCourses() {
+      try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/courses`, {
+          cache: "no-store",
+        });
+        const data = await res.json();
+        setCourses(data.courses ? [data.courses[0]] : []);
+      } finally {
+        setLoadingCourses(false);
+      }
+    }
+    fetchCourses();
+  }, []);
+
   const handleOpenPopup = (item: any) => {
     setOpenPortfolio(item);
   };
@@ -80,6 +114,10 @@ function Home() {
   const handleClosePopup = () => {
     setOpenPortfolio(null);
   };
+
+  function isVideo(url: string) {
+    return /\.(mp4|webm|ogg)$/i.test(url);
+  }
 
   return (
     <>
@@ -103,11 +141,22 @@ function Home() {
                       viewport={{ once: true }}
                     >
                       <Link className="item-link" href="/story">
-                        <img
-                          src={story.thumbnailUrl || img02.src}
-                          alt={story.title}
-                          style={{ objectFit: "cover" }}
-                        />
+                        {isVideo(story.thumbnailUrl) ? (
+                          <video
+                            src={story.thumbnailUrl}
+                            className="w-full h-full object-cover"
+                            autoPlay
+                            muted
+                            playsInline
+                          />
+                        ) : (
+                          <img
+                            src={story.thumbnailUrl || img02.src}
+                            alt={story.title}
+                            style={{ objectFit: "cover" }}
+                          />
+                        )}
+
                         <div className="portfolio-text-holder">
                           <p className="portfolio-title">{story.title}</p>
                         </div>
@@ -140,11 +189,21 @@ function Home() {
                       viewport={{ once: true }}
                     >
                       <Link className="item-link" href="https://handiz.org/">
-                        <img
-                          src={h.thumbnailUrl || img02.src}
-                          alt={h.title}
-                          style={{ objectFit: "cover" }}
-                        />
+                        {isVideo(h.thumbnailUrl) ? (
+                          <video
+                            src={h.thumbnailUrl}
+                            className="w-full h-full object-cover"
+                            autoPlay
+                            muted
+                            playsInline
+                          />
+                        ) : (
+                          <img
+                            src={h.thumbnailUrl || img02.src}
+                            alt={h.title}
+                            style={{ objectFit: "cover" }}
+                          />
+                        )}
                         <div className="portfolio-text-holder">
                           <p className="portfolio-title">{h.title}</p>
                         </div>
@@ -162,27 +221,105 @@ function Home() {
                   </motion.div>
                 )}
 
-                <motion.div className="our-grid-item d-2x1 animate">
-                  <a className="item-link" onClick={openMenu}>
-                    <img src={img02.src} alt="" />
-                    <div className="portfolio-text-holder">
-                      <p className="portfolio-title">CONTACT US</p>
-                    </div>
-                  </a>
-                </motion.div>
+                {loadingContacts ? (
+                  <div className="our-grid-item d-2x1 animate">
+                    <div className="item-link skeleton-box" />
+                  </div>
+                ) : contacts.length > 0 ? (
+                  contacts.map((contact) => (
+                    <motion.div
+                      key={contact._id}
+                      className="our-grid-item d-2x1 animate"
+                      initial={{ opacity: 0, transform: `translateY(50px)` }}
+                      whileInView={{ opacity: 1, transform: `translateY(0px)` }}
+                      viewport={{ once: true }}
+                    >
+                      <a className="item-link" onClick={openMenu}>
+                        {isVideo(contact.thumbnailUrl) ? (
+                          <video
+                            src={contact.thumbnailUrl}
+                            className="w-full h-full object-cover"
+                            autoPlay
+                            muted
+                            playsInline
+                          />
+                        ) : (
+                          <img
+                            src={contact.thumbnailUrl || img02.src}
+                            alt={""}
+                            style={{ objectFit: "cover" }}
+                          />
+                        )}
 
-                {/* HANDIZ COURSE static */}
-                <motion.div className="our-grid-item d-2x1 animate">
-                  <Link
-                    className="item-link"
-                    href="https://handiz.org/d5render/"
-                  >
-                    <img src={img04.src} alt="" />
-                    <div className="portfolio-text-holder">
-                      <p className="portfolio-title">HANDIZ COURSE</p>
-                    </div>
-                  </Link>
-                </motion.div>
+                        <div className="portfolio-text-holder">
+                          <p className="portfolio-title">CONTACT US</p>
+                        </div>
+                      </a>
+                    </motion.div>
+                  ))
+                ) : (
+                  <motion.div className="our-grid-item d-2x1 animate">
+                    <a className="item-link" onClick={openMenu}>
+                      <img src={img02.src} alt={""} />
+                      <div className="portfolio-text-holder">
+                        <p className="portfolio-title">CONTACT US</p>
+                      </div>
+                    </a>
+                  </motion.div>
+                )}
+
+                {loadingCourses ? (
+                  <div className="our-grid-item d-2x1 animate">
+                    <div className="item-link skeleton-box" />
+                  </div>
+                ) : courses.length > 0 ? (
+                  courses.map((course) => (
+                    <motion.div
+                      key={course._id}
+                      className="our-grid-item d-2x1 animate"
+                      initial={{ opacity: 0, transform: `translateY(50px)` }}
+                      whileInView={{ opacity: 1, transform: `translateY(0px)` }}
+                      viewport={{ once: true }}
+                    >
+                      <Link
+                        className="item-link"
+                        href="https://handiz.org/d5render/"
+                      >
+                        {isVideo(course.thumbnailUrl) ? (
+                          <video
+                            src={course.thumbnailUrl}
+                            className="w-full h-full object-cover"
+                            autoPlay
+                            muted
+                            playsInline
+                          />
+                        ) : (
+                          <img
+                            src={course.thumbnailUrl || img04.src}
+                            alt=""
+                            style={{ objectFit: "cover" }}
+                          />
+                        )}
+
+                        <div className="portfolio-text-holder">
+                          <p className="portfolio-title">HANDIZ COURSE</p>
+                        </div>
+                      </Link>
+                    </motion.div>
+                  ))
+                ) : (
+                  <motion.div className="our-grid-item d-2x1 animate">
+                    <Link
+                      className="item-link"
+                      href="https://handiz.org/d5render/"
+                    >
+                      <img src={img04.src} alt="" />
+                      <div className="portfolio-text-holder">
+                        <p className="portfolio-title">HANDIZ COURSE</p>
+                      </div>
+                    </Link>
+                  </motion.div>
+                )}
 
                 {/* PROJECTS replacing: ART, OFFICE, MODEL, MOCKUP */}
                 {/* PROJECTS with pagination */}

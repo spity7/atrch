@@ -42,7 +42,7 @@ async function Story() {
                   Flatland tingling of the spine, a billion trillion science
                   paroxysm of global death permanence
                 </div>
-                <div className="timeline-event-date">2015</div>
+                {/* <div className="timeline-event-date">2015</div> */}
               </li>
 
               <li className="timeline-event">
@@ -52,7 +52,7 @@ async function Story() {
                   the stars Tunguska event drake equation encyclopaedia
                   galactica great turbulent
                 </div>
-                <div className="timeline-event-date">2017</div>
+                {/* <div className="timeline-event-date">2017</div> */}
               </li>
 
               <li className="timeline-event">
@@ -61,7 +61,7 @@ async function Story() {
                   Gathered by gravity preserve and cherish that pale blue dot
                   quasar, the carbon in our apple pies pudding
                 </div>
-                <div className="timeline-event-date">2018</div>
+                {/* <div className="timeline-event-date">2018</div> */}
               </li>
 
               <li className="timeline-event">
@@ -71,7 +71,7 @@ async function Story() {
                   tendrils of true gossamer clouds vangelis the sky calls to us
                   rich in heavy atoms something
                 </div>
-                <div className="timeline-event-date">2020</div>
+                {/* <div className="timeline-event-date">2020</div> */}
               </li>
 
               <li className="timeline-event">
@@ -83,7 +83,7 @@ async function Story() {
                   rings of Uranus network for which there’s little good evidence
                   something fine.
                 </div>
-                <div className="timeline-event-date">2025</div>
+                {/* <div className="timeline-event-date">2025</div> */}
               </li>
             </ul>
           </div>
@@ -95,14 +95,20 @@ async function Story() {
           <div className="clear"></div>
 
           <div className="social-holder center-text top-60">
-            <a className="social-text" href="https://www.twitter.com/">
+            {/* <a className="social-text" href="https://www.twitter.com/">
               TWITTER
-            </a>
-            <a className="social-text" href="https://www.facebook.com/">
-              FACEBOOK
-            </a>
-            <a className="social-text" href="https://www.instagram.com/">
+            </a> */}
+            <a
+              className="social-text"
+              href="https://www.instagram.com/ahmadalatrch/"
+            >
               INSTAGRAM
+            </a>
+            <a
+              className="social-text"
+              href="https://www.linkedin.com/in/ahmad-alatrash-52b271104/"
+            >
+              LINKEDIN
             </a>
           </div>
         </div>
