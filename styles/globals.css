@@ -72,6 +72,14 @@ body.open.done {
   display: block;
 }
 
+.site-wrapper video {
+  max-width: 100%;
+  max-height: 450px;
+  width: auto;
+  height: auto;
+  display: block;
+}
+
 .doc-loader {
   position: fixed;
   left: 0px;

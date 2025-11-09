@@ -290,6 +290,7 @@ function Home() {
                             src={course.thumbnailUrl}
                             className="w-full h-full object-cover"
                             autoPlay
+                            loop
                             muted
                             playsInline
                           />

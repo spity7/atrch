@@ -38,51 +38,31 @@ async function Story() {
             <ul className="timeline-holder">
               <li className="timeline-event">
                 <span className="timeline-circle"></span>
-                <div className="timeline-event-content">
-                  Flatland tingling of the spine, a billion trillion science
-                  paroxysm of global death permanence
-                </div>
+                <div className="timeline-event-content">{story.pOne}</div>
                 {/* <div className="timeline-event-date">2015</div> */}
               </li>
 
               <li className="timeline-event">
                 <span className="timeline-circle"></span>
-                <div className="timeline-event-content">
-                  Rings of Uranus the only home we’ve ever known. Permanence of
-                  the stars Tunguska event drake equation encyclopaedia
-                  galactica great turbulent
-                </div>
+                <div className="timeline-event-content">{story.pTwo}</div>
                 {/* <div className="timeline-event-date">2017</div> */}
               </li>
 
               <li className="timeline-event">
                 <span className="timeline-circle"></span>
-                <div className="timeline-event-content">
-                  Gathered by gravity preserve and cherish that pale blue dot
-                  quasar, the carbon in our apple pies pudding
-                </div>
+                <div className="timeline-event-content">{story.pThree}</div>
                 {/* <div className="timeline-event-date">2018</div> */}
               </li>
 
               <li className="timeline-event">
                 <span className="timeline-circle"></span>
-                <div className="timeline-event-content">
-                  Tendrils of gossamer clouds, the ash of stellar alchemy
-                  tendrils of true gossamer clouds vangelis the sky calls to us
-                  rich in heavy atoms something
-                </div>
+                <div className="timeline-event-content">{story.pFour}</div>
                 {/* <div className="timeline-event-date">2020</div> */}
               </li>
 
               <li className="timeline-event">
                 <span className="timeline-circle"></span>
-                <div className="timeline-event-content">
-                  Muse about descended from astronomers shores of the cosmic
-                  ocean across the centuries encyclopaedia galactica Euclid
-                  intelligent beings. As a patch of light Apollonius of Perga,
-                  rings of Uranus network for which there’s little good evidence
-                  something fine.
-                </div>
+                <div className="timeline-event-content">{story.pFive}</div>
                 {/* <div className="timeline-event-date">2025</div> */}
               </li>
             </ul>

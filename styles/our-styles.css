@@ -22,7 +22,14 @@
   display: block;
   /* margin-bottom: 10px; */
 }
-.our-grid .our-grid-item img, video {
+.our-grid .our-grid-item img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;   /* forces perfect square */
+  object-fit: cover;
+}
+
+.our-grid .our-grid-item video {
   display: block;
   width: 100%;
   aspect-ratio: 1 / 1;   /* forces perfect square */
@@ -66,6 +73,9 @@
   aspect-ratio: 2 / 1 !important;
   }
   .our-grid .our-grid-item.d-2x1 img {
+    aspect-ratio: 2 / 1;
+  }
+  .our-grid .our-grid-item.d-2x1 video {
     aspect-ratio: 2 / 1;
   }
 }
