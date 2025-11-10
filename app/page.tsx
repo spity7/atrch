@@ -26,8 +26,8 @@ function Home() {
   const [contacts, setContacts] = useState<any[]>([]);
   const [courses, setCourses] = useState<any[]>([]);
   const [openPortfolio, setOpenPortfolio] = useState<any>(null);
-  const [visibleCount, setVisibleCount] = useState(12);
-  const pageSize = 12;
+  const [visibleCount, setVisibleCount] = useState(16);
+  const pageSize = 16;
   const [loadingStories, setLoadingStories] = useState(true);
   const [loadingHandiz, setLoadingHandiz] = useState(true);
   const [loadingContacts, setLoadingContacts] = useState(true);
@@ -366,7 +366,7 @@ function Home() {
                         borderRadius: "9999px",
                         fontSize: "14px",
                         letterSpacing: "0.4px",
-                        border: "none",
+                        border: "2px solid white", // ✅ Add this
                         cursor: "pointer",
                         boxShadow: "0 6px 18px rgba(16,24,40,0.18)",
                         transition:

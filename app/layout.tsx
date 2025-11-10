@@ -25,12 +25,12 @@ import { MenuProvider } from "@/context/MenuContext";
 // Metadata of the website (used to inprove SEO of the website)
 export const metadata: Metadata = {
   title: "Atrch",
-  description: "Template by CocoBasic",
+  description: "Atrch",
   keywords: ["HTML", "CSS", "Javascript", "Typescript", "React", "nextjs"],
   authors: [
     {
-      name: "Cocobasic",
-      url: "https://www.cocobasic.com/",
+      name: "Atrch",
+      url: "https://www.atrch.com/",
     },
   ],
 };

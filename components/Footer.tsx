@@ -12,8 +12,8 @@ const Footer = () => {
         </div>
 
         <div className="copyright-holder">
-          © {new Date(Date.now()).getFullYear()} - Pekko Nextjs Template by{" "}
-          <a href="https://cocobasic.com">Coco+Basic</a>.
+          © {new Date(Date.now()).getFullYear()} -{" "}
+          <a href="https://atrch.com">Atrch</a>
         </div>
       </div>
     </footer>
