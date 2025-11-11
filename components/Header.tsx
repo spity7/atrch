@@ -134,7 +134,12 @@ const Header = () => {
                   </a>
 
                   <p className="menu-text-title">PHONE</p>
-                  <a className="menu-text contact-item" href="tel:+96171601751">
+                  <a
+                    className="menu-text contact-item"
+                    href="https://wa.me/96171601751"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <i className="fa-brands fa-whatsapp social-icon4"></i>
                     +961 71 601 751
                   </a>

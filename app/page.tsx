@@ -72,7 +72,9 @@ function Home() {
         { cache: "no-store" }
       );
       const projects_data = await projects_res.json();
-      setProjects(projects_data.projects || []);
+      setProjects(
+        (projects_data.projects || []).sort((a, b) => a.order - b.order)
+      );
     }
     fetchProjects();
   }, []);
