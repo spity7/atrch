@@ -25,14 +25,14 @@
 .our-grid .our-grid-item img {
   display: block;
   width: 100%;
-  aspect-ratio: 1 / 1;   /* forces perfect square */
+  aspect-ratio: 1 / 1; /* forces perfect square */
   object-fit: cover;
 }
 
 .our-grid .our-grid-item video {
   display: block;
   width: 100%;
-  aspect-ratio: 1 / 1;   /* forces perfect square */
+  aspect-ratio: 1 / 1; /* forces perfect square */
   object-fit: cover;
 }
 
@@ -60,8 +60,8 @@
 
 @media screen and (max-width: 767px) {
   .our-grid .our-grid-item.d-1x1 {
-  flex-basis: calc(50% - 3px);
-  aspect-ratio: 1 / 1;
+    flex-basis: calc(50% - 3px);
+    aspect-ratio: 1 / 1;
   }
   .our-grid .our-grid-item {
     /* flex-basis: 100% !important; */
@@ -69,8 +69,8 @@
     margin-bottom: 10px !important;
   }
   .our-grid .our-grid-item.d-2x1 {
-  flex-basis: calc(100%);
-  aspect-ratio: 2 / 1 !important;
+    flex-basis: calc(100%);
+    aspect-ratio: 2 / 1 !important;
   }
   .our-grid .our-grid-item.d-2x1 img {
     aspect-ratio: 2 / 1;
@@ -155,12 +155,12 @@
 .popup-content {
   background-color: #fff;
   width: 100% !important;
-  max-width: 700px;
+  max-width: 1100px;
   padding: 10px;
   border: none;
   animation: show-popup 0.75s ease forwards;
 }
-@media (max-width: 730px) {
+@media (max-width: 1140px) {
   .popup-content {
     width: calc(100% - 40px) !important;
   }
@@ -182,9 +182,8 @@
 }
 
 .popup-image-box {
-  /* width: 700px; */
   display: block;
-  max-height: 80vh;
+  max-height: 90vh;
   overflow: auto;
 }
 .popup-image-box img {
@@ -225,7 +224,9 @@
 .slider .swiper-pagination .swiper-pagination-bullet {
   width: 20px;
   height: 20px;
-  transition: opacity 0.3s ease, background 0.3s ease;
+  transition:
+    opacity 0.3s ease,
+    background 0.3s ease;
 }
 .slider
   .swiper-pagination
@@ -288,7 +289,9 @@
   line-height: 45px;
   -ms-word-wrap: break-word;
   word-wrap: break-word;
-  transition: opacity 0.4s ease, color 0.2s linear;
+  transition:
+    opacity 0.4s ease,
+    color 0.2s linear;
   display: block;
   /* pointer-events: none; */
   cursor: pointer;
@@ -370,7 +373,13 @@
 }
 
 @keyframes pulse {
-  0% { opacity: .6; }
-  50% { opacity: 1; }
-  100% { opacity: .6; }
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
 }

@@ -262,7 +262,10 @@ a.button:hover {
   left: 17px;
   position: absolute;
   transform-origin: 50% 50%;
-  transition: transform 0.7s, width 0.3s, margin 0.3s;
+  transition:
+    transform 0.7s,
+    width 0.3s,
+    margin 0.3s;
   top: 35px;
 }
 
@@ -298,7 +301,10 @@ a.button:hover {
   background: #4d4d4d;
   left: 17px;
   position: absolute;
-  transition: transform 0.7s, width 0.3s, margin 0.3s;
+  transition:
+    transform 0.7s,
+    width 0.3s,
+    margin 0.3s;
   top: 35px;
 }
 
@@ -450,7 +456,9 @@ span.menu-num {
   padding-top: 135px;
   /* visibility: hidden; */
   /* opacity: 0; */
-  transition: visibility 0s linear 0.5s, opacity 0.7s ease;
+  transition:
+    visibility 0s linear 0.5s,
+    opacity 0.7s ease;
 }
 
 .menu-holder-back.open {
@@ -480,7 +488,9 @@ span.menu-num {
   margin: 0 auto;
   padding-left: 165px;
   /* opacity: 0; */
-  transition: opacity 0.7s ease, margin-top 0.7s ease;
+  transition:
+    opacity 0.7s ease,
+    margin-top 0.7s ease;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -1196,7 +1206,6 @@ footer {
     /* margin-bottom: 40px; */
   }
 
-
   .menu-right {
     width: 100%;
     /* margin-left: 50px; */
@@ -1319,52 +1328,52 @@ footer {
 
 .social-icon1 {
   font-size: 28px;
-  color: rgb(255, 111, 111);
+  color: #ffffff;
   text-decoration: none;
   transition: 0.2s;
 }
 
 .social-icon1:hover {
-  color: #ff0062;
+  color: #acacac;
 }
 
 .social-icon2 {
   font-size: 22px;
-  color: rgb(0, 115, 255);
+  color: #ffffff;
   text-decoration: none;
   transition: 0.2s;
 }
 
 .social-icon2:hover {
-  color: #163d81;
+  color: #acacac;
 }
 
 .social-icon3 {
   font-size: 20px;
-  background: linear-gradient(45deg, #d93025, #fbbc04);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  width: 1em;
+  height: 1em;
+  color: #ffffff;
   text-decoration: none;
   transition: 0.2s;
   margin-right: 10px;
+  vertical-align: middle;
+  flex-shrink: 0;
 }
 
 .social-icon3:hover {
-  background: linear-gradient(45deg, #b8251b, #e0a803);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #acacac;
 }
 
 .social-icon4 {
   font-size: 20px;
-  color: #25D366;
+  color: #ffffff;
   text-decoration: none;
   transition: 0.2s;
   margin-right: 10px;
 }
 
 .social-icon4:hover {
-  color: #1da851;
+  color: #acacac;
 }
 
 /* Container */
@@ -1372,7 +1381,7 @@ footer {
   /* background: rgba(255, 255, 255, 0.05); */
   padding: 30px;
   border-radius: 15px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
 /* Title */
@@ -1395,8 +1404,8 @@ footer {
   width: 100%;
   padding: 12px 15px;
   border-radius: 8px;
-  border: 1px solid rgba(255,255,255,0.3);
-  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.05);
   color: #fff;
   font-size: 1rem;
   transition: all 0.3s ease;
@@ -1404,15 +1413,15 @@ footer {
 
 .input-field::placeholder,
 .textarea-field::placeholder {
-  color: rgba(255,255,255,0.6);
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .input-field:focus,
 .textarea-field:focus {
   border-color: #ff6b81;
-  box-shadow: 0 0 10px rgba(255,107,129,0.4);
+  box-shadow: 0 0 10px rgba(255, 107, 129, 0.4);
   outline: none;
-  background: rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.1);
 }
 
 /* Textarea specific */
@@ -1425,9 +1434,9 @@ footer {
   width: 100%;
   padding: 12px;
   border-radius: 10px;
-  border: none;
-  background: linear-gradient(90deg, #ff6b81, #ff8c42);
-  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: linear-gradient(135deg, #ffffff 0%, #e8e8e8 50%, #ffffff 100%);
+  color: #1a1a1a;
   font-size: 1.1rem;
   font-weight: 600;
   cursor: pointer;
@@ -1435,6 +1444,8 @@ footer {
 }
 
 .send-btn:hover {
+  background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 50%, #ffffff 100%);
+  color: #000000;
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(255,107,129,0.5);
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.25);
 }

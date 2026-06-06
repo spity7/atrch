@@ -69,11 +69,13 @@ function Home() {
     async function fetchProjects() {
       const projects_res = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/projects`,
-        { cache: "no-store" }
+        { cache: "no-store" },
       );
       const projects_data = await projects_res.json();
       setProjects(
-        (projects_data.projects || []).sort((a, b) => a.order - b.order)
+        (projects_data.projects || []).sort(
+          (a: any, b: any) => a.order - b.order,
+        ),
       );
     }
     fetchProjects();
@@ -285,7 +287,8 @@ function Home() {
                     >
                       <Link
                         className="item-link"
-                        href="https://handiz.org/d5render/"
+                        href="https://handiz.org/courses/"
+                        target="_blank"
                       >
                         {isVideo(course.thumbnailUrl) ? (
                           <video
@@ -314,7 +317,8 @@ function Home() {
                   <motion.div className="our-grid-item d-2x1 animate">
                     <Link
                       className="item-link"
-                      href="https://handiz.org/d5render/"
+                      href="https://handiz.org/courses/"
+                      target="_blank"
                     >
                       <img src={img04.src} alt="" />
                       <div className="portfolio-text-holder">
